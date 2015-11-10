@@ -1,0 +1,43 @@
+<html>
+<head>
+      <meta charset="utf-8">
+      <style>
+         html{
+            font-family: sans-serif;
+         }
+         #input{
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100vw;
+            margin: 0;
+            border: 1px solid black;
+            font-size: 18pt;
+         }
+         #content{
+            font-size: 12pt;
+         }
+      </style>
+      <script type="text/ecmascript" src="faster.js"></script>
+</head>
+<body onload="init()">
+   <div id="content"></div>
+   <input type="text" id="input"></input>
+   <script type="text/ecmascript">
+      function init(){
+         document.getElementById('input').onkeydown = addLine;
+         faster(document.getElementById('input'));
+      }
+      function addLine(e){
+         if(e.keyCode == 13){ //Enter
+            var contentDiv = document.getElementById('content');
+            contentDiv.appendChild(document.createTextNode(document.getElementById('input').value));
+            contentDiv.appendChild(document.createElement('br'));
+            document.getElementById('input').value = "";
+            contentDiv.scrollTop = contentDiv.scrollHeight;
+
+         }
+      }
+   </script>
+</body>
+</html>
